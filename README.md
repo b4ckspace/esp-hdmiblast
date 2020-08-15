@@ -1,0 +1,4 @@
+- clone this repo
+- change passwords
+- run `sudo esphome hdmiblast.yaml run`
+- enjoy
