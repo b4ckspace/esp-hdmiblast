@@ -1,0 +1,47 @@
+esphome:
+  name: hdmiblast
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: "Backspace IoT"
+  password: "changeme"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Hdmiblast Fallback Hotspot"
+    password: "changeme"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "changeme"
+
+ota:
+  password: "changeme"
+
+# blast
+remote_receiver:
+  pin: D5
+  dump: raw
+
+remote_transmitter:
+  pin: D6
+  carrier_duty_percent: 50%
+
+switch:
+  - platform: template
+    name: Raw Code Power Button
+    turn_on_action:
+      - remote_transmitter.transmit_raw:
+          code: [-4543, 4503, -512, 494, -517, 490, -511, 495, -516, 491, -520, 
+                486, -515, 1498, -514, 492, -519, 488, -513, 494, -518, 488, -512, 
+                495, -516, 491, -510, 496, -515, 492, -519, 488, -513, 480, -512, 
+                4506, -539, 1473, -519, 1494, -518, 1494, -520, 487, -512, 494, 
+                -517, 489, -512, 1501, -541, 466, -515, 1498, -514, 492, -519, 
+                488, -513, 494, -518, 1495, -516, 1500, -513, 491, -570, 1443, 
+                -519, 487, -514, 1499, -512, 1500, -513, 1500, -512]
